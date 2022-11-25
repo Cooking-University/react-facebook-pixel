@@ -9,11 +9,27 @@ module.exports = {
     filename: 'fb-pixel.js',
     libraryTarget: 'umd',
     library: 'ReactPixel',
+    globalObject: 'this',
   },
   module: {
     rules: [
       {
-        use: 'babel-loader',
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              babelrc: false,
+              presets: [
+                [
+                  '@babel/preset-env',
+                  {
+                    modules: false,
+                  },
+                ],
+              ],
+            },
+          },
+        ],
         test: /\.js$/,
         exclude: /node_modules/,
       },

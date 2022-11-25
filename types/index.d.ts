@@ -4,16 +4,17 @@ export interface Options {
 }
 
 export interface AdvancedMatching {
-  ct: string;
-  country: string;
-  db: string;
-  em: string;
-  fn: string;
-  ge: string;
-  ln: string;
-  ph: string;
-  st: string;
-  zp: string;
+  ct?: string;
+  country?: string;
+  db?: string;
+  em?: string;
+  fn?: string;
+  ge?: string;
+  ln?: string;
+  ph?: string;
+  st?: string;
+  zp?: string;
+  external_id?: string;
 }
 
 export interface Data {}
@@ -165,23 +166,37 @@ export interface ViewContent extends Data {
   value?: number;
 }
 
+export interface EventData {
+  eventID?: string;
+}
+
 export function init(
   pixelId: string,
   advancedMatching?: AdvancedMatching,
   options?: Options,
 ): void;
 export function pageView(): void;
-export function track(title: string, data?: Data | any): void;
-export function trackCustom(title: string, data?: Data | any): void;
+export function track(
+  title: string,
+  data?: Data | any,
+  eventData?: EventData | any,
+): void;
+export function trackCustom(
+  title: string,
+  data?: Data | any,
+  eventData?: EventData | any,
+): void;
 export function trackSingle(
   pixel: string,
   title: string,
   data?: Data | any,
+  eventData?: EventData | any,
 ): void;
 export function trackSingleCustom(
   pixel: string,
   title: string,
   data?: Data | any,
+  eventData?: EventData | any,
 ): void;
 export function fbq(...args: Array<unknown>): void;
 export function revokeConsent(): void;
